@@ -45,17 +45,17 @@ To run the ChatGPT WebUI locally, follow these steps:
     ``` 
     
 3.  Install dependencies:        
-    `
+    ```
     yarn
-    ` 
+    ```
  4. Create a .env file with the following field:        
-    `
+    ```
     VITE_LONGSHOT_API_KEY = your_key
-    ` 
+    ``` 
 4.  Start the development server:    
-    `
+    ```
     yarn dev
-    ` 
+    ``` 
     
 
 The application should now be running locally at http://localhost:5173.
