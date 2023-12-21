@@ -22,17 +22,21 @@ function HomePage() {
 		navigate(`/search/${newThreadId}`);
 	};
 	return (
-		<div className="flex h-screen w-screen bg-slate-300">
-			<Sidebar />
-			<div className="grow m-2 rounded-md bg-white flex flex-col md:justify-center justify-between">
+		<div className="flex h-screen w-screen bg-[#f3f3ee]">
+			<Sidebar currLocation="home" />
+			<div className="grow m-2 rounded-md  flex flex-col md:justify-center justify-between bg-[#fcfcf9]">
 				<div className="md:hidden">
 					<Navbar />
 				</div>
 				<div className=" flex flex-col gap-8 mx-auto justify-center">
 					<div>
-						<img src="/Logo.png" alt="LongShot logo"  className="mx-auto w-20 h-20 shadow rounded-full border"/>
+						<img
+							src="/Logo.png"
+							alt="LongShot logo"
+							className="mx-auto w-20 h-20 shadow rounded-full border"
+						/>
 					</div>
-					<div className="text-center font-bold text-2xl ">
+					<div className="text-center font-bold text-2xl font-['Syne'] text-violet-950">
 						How can I help you today?
 					</div>
 					<form className="relative" onSubmit={submitHandler}>
@@ -50,7 +54,7 @@ function HomePage() {
 						</div>
 					</form>
 				</div>
-				<Footer />
+				<Footer currLocation="home" />
 			</div>
 		</div>
 	);
