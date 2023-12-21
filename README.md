@@ -5,6 +5,14 @@ Welcome to the ChatGPT WebUI, a user-friendly interface for interacting with Cha
 
 ## [Live Deployment](https://chat-gpt-ui-tau-ashen.vercel.app/)
 
+## Screenshots
+![image](https://github.com/Yousuf-Ejaz/chatGPT-UI/assets/78158232/5f06ae33-7fd1-47ec-9b49-ee95c1514283)
+![image](https://github.com/Yousuf-Ejaz/chatGPT-UI/assets/78158232/e1b6c97d-4fd4-4df6-aaa1-1c6db5b568af)
+![image](https://github.com/Yousuf-Ejaz/chatGPT-UI/assets/78158232/53d059ae-3cd9-4843-bb96-8a8179aa89b9)
+
+
+
+
 ## Features
 
 ### 1. API Integration
