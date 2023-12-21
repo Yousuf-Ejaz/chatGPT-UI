@@ -3,6 +3,8 @@
 
 Welcome to the ChatGPT WebUI, a user-friendly interface for interacting with ChatGPT. This application is built using React.js for the basic UI, Redux for state management, TailwindCSS for styling, and yarn for dependency management.
 
+## [Live Deployment](https://chat-gpt-ui-tau-ashen.vercel.app/)
+
 ## Features
 
 ### 1. API Integration
