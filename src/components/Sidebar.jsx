@@ -4,17 +4,17 @@ import SearchIcon from "../Icons/SearchIcon";
 import StackIcon from "../Icons/StackIcon";
 import ThreadIcon from "../Icons/ThreadIcon";
 
-function Sidebar({ currLocation }) {
+function Sidebar({ currLocation, openPopup }) {
 	const threads = useSelector((state) => state.threads);
 
 	return (
 		<div className="w-56 bg-[#f3f3ee] py-5 px-4  flex-col gap-2 md:flex hidden text-[#64645f]">
-			<Link
-				to="/"
+			<button
+				onClick={openPopup}
 				className="mt-2 mb-4 text-[#64645f] font-semibold rounded-3xl py-2 px-4 bg-white border-1 border-[#eaeae4] cursor-pointer  shadow hover:ring-2 hover:ring-violet-800 text-center"
 			>
 				New Thread
-			</Link>
+			</button>
 			<Link
 				to="/"
 				className={`pl-2 font-medium  cursor-pointer  hover:bg-[#e8e8e3] hover:text-violet-950 rounded-md py-2 px-4 flex gap-2 justify-start  ${

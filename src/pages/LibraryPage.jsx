@@ -4,12 +4,64 @@ import LibraryHeader from "../components/LibraryHeader";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import ThreadIcon from "../Icons/ThreadIcon";
+import { useEffect, useRef, useState } from "react";
+import Popup from "../components/Popup";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import RightArrowIcon from "../Icons/RightArrowIcon";
 
 function LibraryPage() {
 	const threads = useSelector((state) => state.threads);
+	const [isPopupOpen, setIsPopupOpen] = useState(false);
+	const navigate = useNavigate();
+	const inputQuery = useRef(null);
+	const dispatch = useDispatch();
+
+	const closePopup = () => {
+		setIsPopupOpen(false);
+	};
+
+	useEffect(() => {
+		const handleKeyDown = (event) => {
+			if (event.key === "Escape") {
+				closePopup();
+			}
+		};
+
+		const handleBackgroundClick = (event) => {
+			if (event.target.classList.contains("popup-background")) {
+				closePopup();
+			}
+		};
+
+		// Attach event listeners when the component mounts
+		if (isPopupOpen) {
+			window.addEventListener("keydown", handleKeyDown);
+			window.addEventListener("click", handleBackgroundClick);
+		}
+
+		// Detach event listeners when the component unmounts
+		return () => {
+			window.removeEventListener("keydown", handleKeyDown);
+			window.removeEventListener("click", handleBackgroundClick);
+		};
+	}, [isPopupOpen, closePopup]);
+
+	const submitHandler = (e) => {
+		e.preventDefault();
+		dispatch(createChat(inputQuery.current.value));
+		const newThreadId = crypto.randomUUID();
+
+		dispatch(addNewThread(newThreadId, inputQuery.current.value));
+		inputQuery.current.value = "";
+		closePopup();
+
+		navigate(`/search/${newThreadId}`);
+	};
+
 	return (
 		<div className="flex h-screen bg-[#f3f3ee] ">
-			<Sidebar currLocation="library"/>
+			<Sidebar currLocation="library" openPopup={setIsPopupOpen} />
 			<div className="flex flex-col justify-start grow bg-[#f3f3ee]  ">
 				<LibraryHeader />
 				<div className=" m-2 mt-0 rounded-b-md bg-[#fcfcf9] flex flex-col justify-start  overflow-x-auto grow ">
@@ -44,6 +96,27 @@ function LibraryPage() {
 				</div>
 				<Footer currLocation="library" />
 			</div>
+			<Popup isOpen={isPopupOpen}>
+				<div className="md:w-96  bg-[#fcfcf9] rounded-md">
+					<form
+						className="p-2 rounded-md border-[1px] shadow-sm border-[#9e9e8f] relative "
+						onSubmit={submitHandler}
+					>
+						<input
+							type="text"
+							className="w-full bg-[#fcfcf9] focus:outline-none focus:ring-0 px-2 py-2.5 text-[#64645f] "
+							placeholder="Ask anything..."
+							ref={inputQuery}
+						/>
+						<div
+							className="flex flex-col justify-center rounded-full hover:bg-violet-800 bg-violet-950 absolute top-1/2 -translate-y-1/2 right-3  cursor-pointer transform w-fit text-gray-400 p-2"
+							onClick={submitHandler}
+						>
+							<RightArrowIcon />
+						</div>
+					</form>
+				</div>
+			</Popup>
 		</div>
 	);
 }

@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import HomePage from "./pages/HomePage";
 import ThreadPage from "./pages/ThreadPage";
 import LibraryPage from "./pages/LibraryPage";
+
 function App() {
 	return (
 		<Router>
